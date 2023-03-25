@@ -1,0 +1,1 @@
+list_teman = ['andi', 'budi', 'carli', 'toni']
