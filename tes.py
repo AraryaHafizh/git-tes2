@@ -6,3 +6,5 @@ def print_list(list):
         print(a)
 
 print_list(list_teman)
+
+print('hello world')
