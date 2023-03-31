@@ -37,53 +37,38 @@ import numpy as np
 # graph tabel 1
 
 # Data yang diberikan
-# VCE = np.array([0.5, 1, 2, 5, 10])
-# Ic = np.array([[0, 0, 0, 0, 0],
-#                [2.22, 2.21, 2.23, 2.32, 2.41],
-#                [4.4, 4.44, 4.49, 4.63, 4.9],
-#                [6.76, 6.85, 7.2, 7.3, 7.58],
-#                [9.06, 9.16, 9.31, 9.74, 10.67],
-#                [11.36, 11.57, 11.88, 12.62, 13.38]])
+# VCE = [0, 0.5, 1, 2, 5, 10]
+# Ib_10 = [0, 2.22, 4.4, 6.76, 9.06, 11.36]
+# Ib_20 = [0, 2.21, 4.44, 6.85, 9.16, 11.57]
+# Ib_30 = [0, 2.23, 4.49, 7.2, 9.31, 11.88]
+# Ib_40 = [0, 2.32, 4.63, 7.3, 9.74, 12.62]
+# Ib_50 = [0, 2.41, 4.9, 7.58, 10.67, 13.38]
 
-# # Membuat plot grafik
-# for i in range(Ic.shape[0]):
-#     plt.plot(VCE, Ic[i], label=f"Ib = {i+1} mA")
-# plt.xlabel("VCE (V)")
-# plt.ylabel("Ic (mA)")
-# plt.title('plot grafik perubahan nilai Ic terhadap VCE ')
+# plt.plot(VCE, Ib_10, 'r--', label='Ib=10uA')
+# plt.plot(VCE, Ib_20, 'g--', label='Ib=20uA')
+# plt.plot(VCE, Ib_30, 'b--', label='Ib=30uA')
+# plt.plot(VCE, Ib_40, 'c--', label='Ib=40uA')
+# plt.plot(VCE, Ib_50, 'm--', label='Ib=50uA')
+
+# plt.xlabel('VCE (V)')
+# plt.ylabel('Ic (mA)')
+# plt.title('grafik perubahan nilai Ic terhadap VCE')
 # plt.legend()
 # plt.show()
+
 
 # graph table 2
 
 # Masukkan data ke dalam array numpy
-Ib = np.array([10, 20, 30])
-Ic = np.array([2.31, 9.84, 5.32])
+Ib = [10, 20, 30]
+Ic = [2.31, 4.54, 5.32]
 
-# Buat plot
-plt.plot(Ib, Ic, 'o')
+plt.plot(Ib, Ic, '-o')
+plt.xlabel('Ib (uA)')
+plt.ylabel('Ic (mA)')
+plt.title('Perubahan Ic terhadap Ib')
 
-# Tentukan batas sumbu x dan y
-plt.xlim(0, 35)
-plt.ylim(0, 12)
+gain = (Ic[-1] - Ic[0]) / (Ib[-1] - Ib[0])
+plt.text(25, 2.3, "Gain = {:.2f}".format(gain))
 
-# Tentukan label sumbu x dan y
-plt.xlabel('Ib')
-plt.ylabel('Ic')
-
-# Hitung gradien menggunakan numpy.polyfit
-m, b = np.polyfit(Ib, Ic, 1)
-gain = round(m, 4)
-print('Gain =', gain)
-
-# Buat garis regresi
-x = np.linspace(0, 35, 100)
-y = m * x + b
-plt.plot(x, y)
-
-# Tambahkan teks gain pada plot
-plt.text(5, 10, f'Gain = {gain}', fontsize=12)
-
-# Tampilkan plot
-plt.title('Plot Ic terhadap perubahan Ib')
 plt.show()
